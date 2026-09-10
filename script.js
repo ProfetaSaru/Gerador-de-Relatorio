@@ -20,11 +20,23 @@ document.addEventListener('DOMContentLoaded', () => {
       times.textContent = `${activity.start} – ${activity.end}`;
 
       const text = document.createElement('strong');
-      text.textContent = ` – *${activity.title}-${activity.description}*`;
+      text.textContent = ` – *${
+        activity.description
+          ? `${activity.title}-${activity.description}`
+          : activity.title
+      }*`;
 
       item.append(times, text);
       reportList.appendChild(item);
     });
+  }
+
+  function formatActivity(activity) {
+    const activityText = activity.description
+      ? `${activity.title}-${activity.description}`
+      : activity.title;
+
+    return `${activity.start} – ${activity.end} – *${activityText}*`;
   }
 
   form.addEventListener('submit', (event) => {
@@ -51,10 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const text = [
       '*RELATÓRIO DE CONCLUSÃO DE ATIVIDADE*',
-      ...activities.map(
-        (activity) =>
-          `${activity.start} – ${activity.end} – *${activity.title}-${activity.description}*`,
-      ),
+      ...activities.map(formatActivity),
     ].join('\n');
 
     await navigator.clipboard.writeText(text);
