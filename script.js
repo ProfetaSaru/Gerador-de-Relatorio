@@ -17,26 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
       item.className = 'report-item';
 
       const times = document.createElement('span');
-      times.textContent = `${activity.start} – ${activity.end}`;
+      times.textContent = `${activity.start} – ${activity.end} – `;
 
-      const text = document.createElement('strong');
-      text.textContent = ` – *${
-        activity.description
-          ? `${activity.title}-${activity.description}`
-          : activity.title
-      }*`;
+      const title = document.createElement('strong');
+      title.textContent = `*${activity.title}:*`;
 
-      item.append(times, text);
+      const description = document.createTextNode(
+        activity.description ? ` ${activity.description};` : ';',
+      );
+
+      item.append(times, title, description);
       reportList.appendChild(item);
     });
   }
 
   function formatActivity(activity) {
-    const activityText = activity.description
-      ? `${activity.title}-${activity.description}`
-      : activity.title;
+    const description = activity.description
+      ? ` ${activity.description};`
+      : ';';
 
-    return `${activity.start} – ${activity.end} – *${activityText}*`;
+    return `${activity.start} – ${activity.end} – *${activity.title}:*${description}`;
   }
 
   form.addEventListener('submit', (event) => {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       start: data.get('start-time'),
       end: data.get('end-time'),
       title: data.get('title'),
-      description: data.get('description'),
+      description: data.get('description')?.toString().trim() || '',
     });
 
     renderActivities();
@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ].join('\n');
 
     await navigator.clipboard.writeText(text);
-    copyButton.textContent = 'Copiado!';
 
+    copyButton.textContent = 'Copiado!';
     setTimeout(() => {
       copyButton.textContent = 'Copiar';
     }, 1500);
