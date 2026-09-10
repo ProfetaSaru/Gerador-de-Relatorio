@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
       times.textContent = `${activity.start} – ${activity.end} – `;
 
       const title = document.createElement('strong');
-      title.textContent = `*${activity.title}:*`;
+      title.textContent = activity.description
+        ? `*${activity.title}:*`
+        : `*${activity.title}*`;
 
       const description = document.createTextNode(
         activity.description ? ` ${activity.description};` : ';',
@@ -32,11 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function formatActivity(activity) {
-    const description = activity.description
-      ? ` ${activity.description};`
-      : ';';
+    if (activity.description) {
+      return `${activity.start} – ${activity.end} – *${activity.title}:* ${activity.description};`;
+    }
 
-    return `${activity.start} – ${activity.end} – *${activity.title}:*${description}`;
+    return `${activity.start} – ${activity.end} – *${activity.title}*;`;
   }
 
   form.addEventListener('submit', (event) => {
