@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function renderAccounts() {
     const { accounts } = await apiRequest('/api/accounts');
     list.innerHTML = '';
-    if (!data.accounts.length) {
+    if (!accounts.length) {
       const empty = document.createElement('p');
       empty.className = 'empty-message';
       empty.textContent = 'Nenhuma conta pessoal cadastrada.';
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    data.accounts.forEach((account) => {
+    accounts.forEach((account) => {
       const item = document.createElement('div');
       item.className = 'account-list-item';
       const details = document.createElement('div');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const activityCount = document.createElement('span');
       name.textContent = account.name;
       username.textContent = `Usuário: ${account.username}`;
-      activityCount.textContent = `${account.activities.length} atividade(s)`;
+      activityCount.textContent = `${account.activityCount} atividade(s)`;
       details.append(name, username);
       item.append(details, activityCount);
       list.appendChild(item);
