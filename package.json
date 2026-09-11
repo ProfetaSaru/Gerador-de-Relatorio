@@ -6,6 +6,6 @@
     "dev": "vercel dev"
   },
   "dependencies": {
-    "@vercel/postgres": "latest"
+    "@neondatabase/serverless": "latest"
   }
 }

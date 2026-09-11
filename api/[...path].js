@@ -1,9 +1,11 @@
 const crypto = require('crypto');
-const { sql } = require('@vercel/postgres');
+const { neon } = require('@neondatabase/serverless');
 
 const sessionSecret = process.env.SESSION_SECRET || 'desenvolvimento-altere-este-segredo';
 const adminUsername = process.env.ADMIN_USERNAME || 'admin';
 const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+const databaseUrl = process.env.POSTGRES_URL || process.env.STORAGE_URL || process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
+const sql = databaseUrl ? neon(databaseUrl) : null;
 
 function send(response, status, body) {
   response.status(status).json(body);
@@ -66,6 +68,7 @@ function getAccount(row) {
 
 module.exports = async function handler(request, response) {
   try {
+    if (!sql) return send(response, 500, { error: 'Banco de dados não configurado. Adicione POSTGRES_URL ou STORAGE_URL na Vercel.' });
     await initializeDatabase();
     const path = new URL(request.url, 'http://localhost').pathname;
 

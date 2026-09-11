@@ -54,5 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector('#logout-button').addEventListener('click', logout);
-  renderAccounts().catch((error) => { message.textContent = error.message; });
+  renderAccounts().catch((error) => {
+    message.textContent = error.message;
+    const errorItem = document.createElement('p');
+    errorItem.className = 'form-message';
+    errorItem.textContent = `Não foi possível carregar as contas: ${error.message}`;
+    list.replaceChildren(errorItem);
+  });
 });

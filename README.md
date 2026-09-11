@@ -23,6 +23,8 @@ O banco cria as tabelas automaticamente na primeira requisição. A aplicação 
 /api/login
 ```
 
+A conexão pode usar `POSTGRES_URL` (prefixo recomendado na integração Neon) ou `STORAGE_URL` (se esse foi o prefixo escolhido na configuração).
+
 Para testar localmente, instale a CLI da Vercel e execute:
 
 ```powershell
