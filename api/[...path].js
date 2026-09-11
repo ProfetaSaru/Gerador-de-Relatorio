@@ -4,7 +4,13 @@ const { neon } = require('@neondatabase/serverless');
 const sessionSecret = process.env.SESSION_SECRET || 'desenvolvimento-altere-este-segredo';
 const adminUsername = process.env.ADMIN_USERNAME || 'admin';
 const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
-const databaseUrl = process.env.POSTGRES_URL || process.env.STORAGE_URL || process.env.DATABASE_URL || process.env.NEON_DATABASE_URL;
+const databaseUrl = process.env.POSTGRES_URL
+  || process.env.POSTGRES_URL_NON_POOLING
+  || process.env.STORAGE_URL
+  || process.env.STORAGE_POSTGRES_URL
+  || process.env.STORAGE_DATABASE_URL
+  || process.env.DATABASE_URL
+  || process.env.NEON_DATABASE_URL;
 const sql = databaseUrl ? neon(databaseUrl) : null;
 
 function send(response, status, body) {
@@ -139,6 +145,10 @@ module.exports = async function handler(request, response) {
     return send(response, 404, { error: 'Rota não encontrada.' });
   } catch (error) {
     console.error(error);
-    return send(response, 500, { error: 'Erro interno do servidor.' });
+    return send(response, 500, {
+      error: process.env.NODE_ENV === 'production'
+        ? 'Não foi possível conectar ao banco de dados. Confira as variáveis do Neon na Vercel.'
+        : error.message,
+    });
   }
 };
