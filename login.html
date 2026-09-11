@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Gerador de Relatório</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="auth-page">
+    <main class="container auth-container">
+      <section class="card login-card">
+        <p class="eyebrow">Gerador de relatório</p>
+        <h1>Acessar conta</h1>
+        <p class="helper-text">Entre para acessar o painel administrativo ou seu relatório pessoal.</p>
+        <form id="login-form">
+          <div class="field">
+            <label for="username">Usuário</label>
+            <input type="text" id="username" required autocomplete="username" />
+          </div>
+          <div class="field">
+            <label for="password">Senha</label>
+            <input type="password" id="password" required autocomplete="current-password" />
+          </div>
+          <p id="login-message" class="form-message" role="alert"></p>
+          <button type="submit">Entrar</button>
+        </form>
+        <p class="helper-text credentials-hint">Administrador inicial: <strong>admin</strong> / <strong>admin123</strong></p>
+      </section>
+    </main>
+    <script src="auth.js" defer></script>
+    <script src="login.js" defer></script>
+  </body>
+</html>
