@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const list = document.querySelector('#account-list');
 
   async function renderAccounts() {
-    const { accounts } = await apiRequest('/api/accounts');
+    const result = await apiRequest('/api/accounts');
+    const accounts = Array.isArray(result.accounts) ? result.accounts : [];
     list.innerHTML = '';
     if (!accounts.length) {
       const empty = document.createElement('p');
@@ -46,10 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
       message.className = 'form-message success-message';
       message.textContent = 'Conta cadastrada com sucesso.';
-      await renderAccounts();
     } catch (error) {
       message.className = 'form-message';
       message.textContent = error.message;
+    } finally {
+      try {
+        await renderAccounts();
+      } catch (error) {
+        const errorItem = document.createElement('p');
+        errorItem.className = 'form-message';
+        errorItem.textContent = `Não foi possível carregar as contas: ${error.message}`;
+        list.replaceChildren(errorItem);
+      }
     }
   });
 
