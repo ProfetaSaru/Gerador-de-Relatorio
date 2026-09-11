@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório de atividades</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Organizador pessoal</p>
+          <h1>Relatório de atividades</h1>
+          <p class="subtitle">Registre suas tarefas e mantenha tudo em ordem.</p>
+        </div>
+        <span id="task-count" class="task-count">0 tarefas</span>
+      </header>
+
+      <div class="layout">
+        <section class="panel form-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="section-kicker">Nova entrada</p>
+              <h2 id="form-title">Adicionar tarefa</h2>
+            </div>
+            <button id="cancel-edit" class="text-button hidden" type="button">Cancelar edição</button>
+          </div>
+
+          <form id="task-form">
+            <div class="time-fields">
+              <div class="field">
+                <label for="start-time">Hora inicial</label>
+                <input id="start-time" name="start-time" type="time" required />
+              </div>
+              <div class="field">
+                <label for="end-time">Hora final</label>
+                <input id="end-time" name="end-time" type="time" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="title">Título</label>
+              <input id="title" name="title" type="text" placeholder="Ex.: Revisão de código" required />
+            </div>
+            <div class="field">
+              <label for="description">Descrição <span>(opcional)</span></label>
+              <textarea id="description" name="description" placeholder="O que foi realizado?"></textarea>
+            </div>
+            <button id="submit-task" class="primary-button" type="submit">Adicionar tarefa</button>
+          </form>
+          <p id="form-message" class="form-message" role="status"></p>
+        </section>
+
+        <section class="panel report-panel">
+          <div class="panel-heading report-heading">
+            <div>
+              <p class="section-kicker">Seu registro</p>
+              <h2>Atividades do dia</h2>
+            </div>
+            <div class="actions">
+              <button id="copy-report" class="secondary-button" type="button">Copiar relatório</button>
+              <button id="clear-tasks" class="danger-button" type="button">Limpar tudo</button>
+            </div>
+          </div>
+
+          <div id="task-list" class="task-list"></div>
+          <p id="empty-state" class="empty-state">Nenhuma tarefa registrada ainda.</p>
+
+          <div class="report-preview">
+            <div class="preview-heading">
+              <span>Formato do relatório</span>
+              <span id="storage-status">Salvo neste navegador</span>
+            </div>
+            <pre id="report-preview">Nenhuma tarefa para mostrar.</pre>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div id="confirm-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-card">
+        <p class="section-kicker">Atenção</p>
+        <h2 id="modal-title">Excluir tarefas?</h2>
+        <p>Essa ação removerá todas as tarefas salvas neste navegador.</p>
+        <div class="modal-actions">
+          <button id="cancel-delete" class="secondary-button" type="button">Cancelar</button>
+          <button id="confirm-delete" class="danger-button" type="button">Excluir tudo</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
