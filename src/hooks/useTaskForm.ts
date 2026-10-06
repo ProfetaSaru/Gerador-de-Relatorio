@@ -15,7 +15,7 @@ export function useTaskForm() {
   const setFieldValue = useCallback((field: keyof TaskFormData, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      [field]: value,
+      [field]: field === 'title' ? value.toUpperCase() : value,
     }));
   }, []);
 
@@ -24,7 +24,7 @@ export function useTaskForm() {
     setFormData({
       start: task.start,
       end: task.end,
-      title: task.title,
+      title: task.title.toUpperCase(),
       description: task.description,
     });
   }, []);

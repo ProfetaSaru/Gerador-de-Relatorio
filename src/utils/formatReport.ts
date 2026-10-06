@@ -1,7 +1,8 @@
 import { Task } from '../types/task';
 
 export function formatTaskLine(task: Task): string {
-  const title = task.description ? `*${task.title}:*` : `*${task.title}*`;
+  const upperTitle = task.title.trim().toUpperCase();
+  const title = task.description ? `*${upperTitle}:*` : `*${upperTitle}*`;
   const description = task.description ? ` - ${task.description}` : '';
   return `${task.start} – ${task.end} ${title}${description};`;
 }

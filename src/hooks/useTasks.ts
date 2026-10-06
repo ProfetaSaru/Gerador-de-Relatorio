@@ -8,7 +8,10 @@ function sortTaskList(items: Task[]): Task[] {
 
 export function useTasks() {
   const [tasks, setTasks] = useState<Task[]>(() => {
-    const initial = loadStoredTasks();
+    const initial = loadStoredTasks().map((task) => ({
+      ...task,
+      title: task.title.toUpperCase(),
+    }));
     return sortTaskList(initial);
   });
 
@@ -16,6 +19,7 @@ export function useTasks() {
     const newTask: Task = {
       id: crypto.randomUUID(),
       ...formData,
+      title: formData.title.trim().toUpperCase(),
     };
 
     setTasks((prev) => {
@@ -38,7 +42,11 @@ export function useTasks() {
 
       wasUpdated = true;
       const updatedList = [...prev];
-      updatedList[taskIndex] = { id, ...formData };
+      updatedList[taskIndex] = {
+        id,
+        ...formData,
+        title: formData.title.trim().toUpperCase(),
+      };
       const sorted = sortTaskList(updatedList);
       saveStoredTasks(sorted);
       return sorted;

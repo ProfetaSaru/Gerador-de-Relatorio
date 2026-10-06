@@ -80,6 +80,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
             placeholder="Ex.: Revisão de código"
             required
             value={formData.title}
+            style={{ textTransform: 'uppercase' }}
             onChange={(e) => onFieldChange('title', e.target.value)}
           />
         </FormField>

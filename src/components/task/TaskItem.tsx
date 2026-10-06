@@ -17,7 +17,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete }) =>
           <Clock size={13} />
           {task.start} – {task.end}
         </span>
-        <h3>{task.title}</h3>
+        <h3>{task.title.toUpperCase()}</h3>
         {task.description && <p>{task.description}</p>}
       </div>
 
