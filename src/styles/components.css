@@ -72,7 +72,7 @@ h3 {
 .panel {
   min-width: 0;
   padding: 28px;
-  border: 1px solid rgba(207, 218, 227, 0.8);
+  border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--paper);
   box-shadow: var(--shadow);
@@ -122,7 +122,7 @@ h3 {
   outline: none;
   padding: 12px 13px;
   color: var(--ink);
-  background: #fbfcfd;
+  background: var(--paper-surface);
   transition: border-color 0.18s ease, box-shadow 0.18s ease;
   font-family: inherit;
 }
@@ -130,7 +130,7 @@ h3 {
 .input-control:focus,
 .textarea-control:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.12);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .textarea-control {
@@ -257,12 +257,12 @@ h3 {
   gap: 18px;
   padding: 16px 0 16px 16px;
   border-left: 3px solid var(--blue);
-  border-bottom: 1px solid #edf0f2;
+  border-bottom: 1px solid var(--line);
   transition: background 0.15s ease;
 }
 
 .task-item:hover {
-  background: #fbfcfd;
+  background: var(--paper-surface);
 }
 
 .task-content {
@@ -304,7 +304,7 @@ h3 {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #f8fafb;
+  background: var(--paper-surface);
 }
 
 .preview-heading {

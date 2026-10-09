@@ -4,8 +4,11 @@ import {
   ChevronRight,
   Zap,
   X,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { NavigationItem } from '../../types/navigation';
+import { ThemeMode } from '../../hooks/useTheme';
 
 interface SidebarProps {
   items: NavigationItem[];
@@ -15,6 +18,8 @@ interface SidebarProps {
   onToggleCollapse: () => void;
   isMobileOpen: boolean;
   onCloseMobile: () => void;
+  theme: ThemeMode;
+  onToggleTheme: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -25,6 +30,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onToggleCollapse,
   isMobileOpen,
   onCloseMobile,
+  theme,
+  onToggleTheme,
 }) => {
   const automationItems = items.filter((item) => item.category === 'automacoes');
   const systemItems = items.filter((item) => item.category === 'sistema');
@@ -152,6 +159,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <div className="status-indicator-dot" />
             </div>
           )}
+
+          {/* Botão de Alternância de Tema */}
+          <button
+            type="button"
+            className="sidebar-theme-btn"
+            onClick={onToggleTheme}
+            title={theme === 'dark' ? 'Alternar para Modo Claro' : 'Alternar para Modo Escuro'}
+            aria-label="Alternar tema"
+          >
+            <span className="sidebar-theme-icon">
+              {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+            </span>
+            {!isCollapsed && (
+              <div className="sidebar-theme-label">
+                <span>{theme === 'dark' ? 'Modo Escuro' : 'Modo Claro'}</span>
+                <span className="sidebar-theme-tag">
+                  {theme === 'dark' ? 'Dark' : 'Light'}
+                </span>
+              </div>
+            )}
+          </button>
         </div>
       </aside>
     </>

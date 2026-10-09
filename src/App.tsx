@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTasks } from './hooks/useTasks';
 import { useTaskForm } from './hooks/useTaskForm';
 import { useNotification } from './hooks/useNotification';
+import { useTheme } from './hooks/useTheme';
 import { Header } from './components/layout/Header';
 import { Sidebar } from './components/layout/Sidebar';
 import { TopNavbar } from './components/layout/TopNavbar';
@@ -14,6 +15,7 @@ import { Task } from './types/task';
 import { getNavigationItems } from './utils/navigationItems';
 
 export const App: React.FC = () => {
+  const { theme, toggleTheme } = useTheme();
   const { tasks, addTask, updateTask, deleteTask, clearAllTasks } = useTasks();
   const {
     formData,
@@ -31,7 +33,10 @@ export const App: React.FC = () => {
   const [activeToolId, setActiveToolId] = useState<string>('relatorios');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(() => {
     try {
-      return localStorage.getItem('autohub_sidebar_collapsed') === 'true';
+      return (
+        localStorage.getItem('benhermes_sidebar_collapsed') === 'true' ||
+        localStorage.getItem('autohub_sidebar_collapsed') === 'true'
+      );
     } catch {
       return false;
     }
@@ -40,7 +45,7 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     try {
-      localStorage.setItem('autohub_sidebar_collapsed', String(isSidebarCollapsed));
+      localStorage.setItem('benhermes_sidebar_collapsed', String(isSidebarCollapsed));
     } catch {
       // Ignore localStorage exceptions
     }
@@ -111,6 +116,8 @@ export const App: React.FC = () => {
         onToggleCollapse={() => setIsSidebarCollapsed((prev) => !prev)}
         isMobileOpen={isMobileSidebarOpen}
         onCloseMobile={() => setIsMobileSidebarOpen(false)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       <div className="dashboard-main">

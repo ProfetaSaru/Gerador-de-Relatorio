@@ -307,6 +307,64 @@
   justify-content: center;
 }
 
+/* Botão de Alternância de Tema na Sidebar */
+.sidebar-theme-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--sidebar-border);
+  background: var(--sidebar-surface);
+  color: var(--sidebar-text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: 10px;
+}
+
+.sidebar-theme-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--yellow);
+  border-color: rgba(250, 204, 21, 0.4);
+}
+
+.sidebar-theme-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--yellow);
+  transition: transform var(--transition-fast);
+}
+
+.sidebar-theme-btn:hover .sidebar-theme-icon {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.app-sidebar.collapsed .sidebar-theme-btn {
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.sidebar-theme-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.sidebar-theme-tag {
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: var(--yellow-soft);
+  color: var(--yellow);
+  font-weight: 700;
+  border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
 /* ==========================================================================
    Top Navbar Styles
    ========================================================================== */
@@ -314,7 +372,7 @@
   height: var(--topbar-height);
   background: var(--topbar-bg);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--topbar-border, var(--line));
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,20 +1,29 @@
 :root {
-  /* Colors */
+  /* ========================================================================
+     TEMA CLARO (Default): AZUL, BRANCO E AMARELO
+     ======================================================================== */
+  --bg-page: #f4f7fc;
+  --paper: #ffffff;
+  --paper-surface: #f8fafc;
   --ink: #0f172a;
   --ink-secondary: #334155;
   --muted: #64748b;
   --line: #e2e8f0;
   --line-strong: #cbd5e1;
-  --paper: #ffffff;
-  --bg-page: #f8fafc;
 
-  /* Brand Blues */
-  --blue: #2563eb;
-  --blue-dark: #1d4ed8;
+  /* Brand Azul */
+  --blue: #1d4ed8;
+  --blue-dark: #1e40af;
   --blue-soft: #eff6ff;
-  --blue-hover: #3b82f6;
+  --blue-hover: #2563eb;
 
-  /* States */
+  /* Brand Amarelo */
+  --yellow: #eab308;
+  --yellow-hover: #ca8a04;
+  --yellow-soft: #fefce8;
+  --yellow-glow: rgba(234, 179, 8, 0.35);
+
+  /* Estados Funcionais */
   --red: #ef4444;
   --red-soft: #fef2f2;
   --green: #10b981;
@@ -22,26 +31,27 @@
   --amber: #f59e0b;
   --amber-soft: #fffbeb;
 
-  /* Sidebar Theme (Modern Dark Slate) */
-  --sidebar-bg: #090e17;
-  --sidebar-surface: #111827;
+  /* Sidebar Theme (Light Mode: Navy Elegante com detalhes dourados) */
+  --sidebar-bg: #090e1a;
+  --sidebar-surface: #10192e;
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-text: #94a3b8;
-  --sidebar-text-hover: #f1f5f9;
-  --sidebar-active-bg: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --sidebar-text-hover: #facc15;
+  --sidebar-active-bg: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
   --sidebar-active-text: #ffffff;
   --sidebar-width: 270px;
   --sidebar-collapsed-width: 76px;
 
   /* Top Navbar */
   --topbar-height: 64px;
-  --topbar-bg: rgba(255, 255, 255, 0.85);
+  --topbar-bg: rgba(255, 255, 255, 0.88);
+  --topbar-border: #e2e8f0;
 
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
   --shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
   --shadow-lg: 0 20px 45px -10px rgba(15, 23, 42, 0.12);
-  --shadow-glow: 0 0 25px rgba(37, 99, 235, 0.35);
+  --shadow-glow: 0 0 25px rgba(29, 78, 216, 0.3);
 
   /* Radius */
   --radius-sm: 8px;
@@ -52,4 +62,57 @@
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   TEMA ESCURO: AZUL ESCURO, PRETO E AMARELO
+   ========================================================================== */
+:root[data-theme="dark"] {
+  --bg-page: #000000; /* Fundo Preto Profundo */
+  --paper: #0b1329;   /* Cards e painéis em Azul Escuro Rico */
+  --paper-surface: #0f1b3b;
+  --ink: #f8fafc;     /* Textos em Branco com alto contraste */
+  --ink-secondary: #cbd5e1;
+  --muted: #94a3b8;
+  --line: #172554;     /* Linhas em Azul Escuro */
+  --line-strong: #1e3a8a;
+
+  /* Brand Azul */
+  --blue: #3b82f6;
+  --blue-dark: #1d4ed8;
+  --blue-soft: rgba(59, 130, 246, 0.18);
+  --blue-hover: #60a5fa;
+
+  /* Brand Amarelo: Destaque luminiscente */
+  --yellow: #facc15;
+  --yellow-hover: #eab308;
+  --yellow-soft: rgba(250, 204, 21, 0.15);
+  --yellow-glow: 0 0 22px rgba(250, 204, 21, 0.45);
+
+  /* Estados Funcionais no Dark */
+  --red: #f87171;
+  --red-soft: rgba(239, 68, 68, 0.15);
+  --green: #34d399;
+  --green-soft: rgba(16, 185, 129, 0.15);
+  --amber: #fbbf24;
+  --amber-soft: rgba(245, 158, 11, 0.15);
+
+  /* Sidebar Theme (Dark: Preto Profundo com bordas e destaques amarelos) */
+  --sidebar-bg: #050811;
+  --sidebar-surface: #0a1122;
+  --sidebar-border: rgba(250, 204, 21, 0.15);
+  --sidebar-text: #94a3b8;
+  --sidebar-text-hover: #facc15;
+  --sidebar-active-bg: linear-gradient(135deg, #172554 0%, #1e3a8a 100%);
+  --sidebar-active-text: #facc15;
+
+  /* Top Navbar no Dark */
+  --topbar-bg: rgba(5, 8, 17, 0.9);
+  --topbar-border: rgba(250, 204, 21, 0.15);
+
+  /* Shadows no Dark */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.7), 0 4px 10px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 45px -10px rgba(0, 0, 0, 0.85);
+  --shadow-glow: 0 0 25px rgba(250, 204, 21, 0.35);
 }
