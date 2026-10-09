@@ -1,0 +1,385 @@
+/* ==========================================================================
+   MÓDULO: HISTÓRICO & ARQUIVOS DE RELATÓRIOS
+   ========================================================================== */
+
+.history-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header do Histórico */
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--paper);
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.history-header-info h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.history-header-info p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.history-badge-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--blue-soft);
+  color: var(--blue);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+/* Barra de Filtro e Busca */
+.history-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: var(--paper);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+}
+
+.history-search-wrapper {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.history-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.history-search-input {
+  width: 100%;
+  padding: 0.6rem 0.85rem 0.6rem 2.4rem;
+  font-size: 0.88rem;
+  color: var(--ink);
+  background: var(--paper-surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.history-search-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Lista / Cards de Relatórios */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.history-card {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  padding: 1.35rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.history-card:hover {
+  border-color: var(--blue-hover);
+  box-shadow: var(--shadow);
+}
+
+.history-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.history-card-title-group h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.history-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.history-card-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.history-card-note {
+  font-size: 0.8rem;
+  color: var(--ink-secondary);
+  background: var(--paper-surface);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--yellow);
+  margin-top: 0.4rem;
+}
+
+/* Ações do Card de Relatório */
+.history-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-history-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--paper-surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-history-action:hover {
+  background: var(--blue-soft);
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn-history-action.restore {
+  background: var(--blue);
+  color: #ffffff;
+  border-color: var(--blue);
+}
+
+.btn-history-action.restore:hover {
+  background: var(--blue-dark);
+}
+
+.btn-history-action.delete {
+  color: var(--red);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.btn-history-action.delete:hover {
+  background: var(--red-soft);
+  border-color: var(--red);
+}
+
+/* Área de Pré-visualização do Relatório no Histórico */
+.history-preview-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 0.25rem;
+}
+
+.history-preview-toggle:hover {
+  text-decoration: underline;
+}
+
+.history-preview-box {
+  background: #0f172a;
+  color: #f1f5f9;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.84rem;
+  line-height: 1.6;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid #1e293b;
+}
+
+/* Estado Vazio */
+.history-empty-state {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--line-strong);
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.history-empty-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--blue-soft);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.history-empty-state h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.history-empty-state p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  max-width: 440px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   MODAL: SALVAR RELATÓRIO COMO...
+   ========================================================================== */
+
+.save-as-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.save-as-modal-box {
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+}
+
+.save-as-modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.save-as-modal-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.save-as-modal-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.save-as-modal-footer {
+  padding: 1rem 1.5rem;
+  background: var(--paper-surface);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* ==========================================================================
+   TEMA ESCURO - AJUSTES DE HISTÓRICO
+   ========================================================================== */
+:root[data-theme="dark"] .history-badge-count {
+  background: rgba(250, 204, 21, 0.15);
+  color: var(--yellow);
+  border-color: rgba(250, 204, 21, 0.3);
+}
+
+:root[data-theme="dark"] .history-search-input:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.2);
+}
+
+:root[data-theme="dark"] .btn-history-action.restore {
+  background: var(--yellow);
+  color: #000000;
+  border-color: var(--yellow);
+  font-weight: 700;
+}
+
+:root[data-theme="dark"] .btn-history-action.restore:hover {
+  background: var(--yellow-hover);
+}
+
+:root[data-theme="dark"] .history-preview-toggle {
+  color: var(--yellow);
+}
+
+:root[data-theme="dark"] .history-empty-icon {
+  background: rgba(250, 204, 21, 0.15);
+  color: var(--yellow);
+}

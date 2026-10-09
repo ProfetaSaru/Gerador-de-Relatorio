@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { NavigationItem } from '../types/navigation';
 
-export const getNavigationItems = (taskCount: number): NavigationItem[] => [
+export const getNavigationItems = (taskCount: number, savedReportsCount = 0): NavigationItem[] => [
   {
     id: 'relatorios',
     name: 'Gerador de Relatórios',
@@ -59,9 +59,9 @@ export const getNavigationItems = (taskCount: number): NavigationItem[] => [
     shortName: 'Histórico',
     description: 'Consolidação de atividades anteriores e relatórios salvos localmente.',
     category: 'sistema',
-    badge: 'Em breve',
-    badgeVariant: 'muted',
-    isReady: false,
+    badge: savedReportsCount > 0 ? `${savedReportsCount} salvos` : 'Ativo',
+    badgeVariant: savedReportsCount > 0 ? 'primary' : 'success',
+    isReady: true,
     icon: <History size={20} />,
   },
   {

@@ -68,11 +68,20 @@ export function useTasks() {
     saveStoredTasks([]);
   }, []);
 
+  const restoreTasks = useCallback((newTasks: Task[]) => {
+    const sorted = sortTaskList(
+      newTasks.map((t) => ({ ...t, title: t.title.toUpperCase() }))
+    );
+    setTasks(sorted);
+    saveStoredTasks(sorted);
+  }, []);
+
   return {
     tasks,
     addTask,
     updateTask,
     deleteTask,
     clearAllTasks,
+    restoreTasks,
   };
-}
+};

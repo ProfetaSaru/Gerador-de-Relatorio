@@ -3,11 +3,13 @@ import { useTasks } from './hooks/useTasks';
 import { useTaskForm } from './hooks/useTaskForm';
 import { useNotification } from './hooks/useNotification';
 import { useTheme } from './hooks/useTheme';
+import { useSavedReports } from './hooks/useSavedReports';
 import { Header } from './components/layout/Header';
 import { Sidebar } from './components/layout/Sidebar';
 import { TopNavbar } from './components/layout/TopNavbar';
 import { ToolPlaceholder } from './components/layout/ToolPlaceholder';
 import { QuickTemplatesHub } from './components/templates/QuickTemplatesHub';
+import { ReportsHistoryHub } from './components/history/ReportsHistoryHub';
 import { TaskForm } from './components/task/TaskForm';
 import { ReportPanel } from './components/task/ReportPanel';
 import { Modal } from './components/common/Modal';
@@ -16,7 +18,15 @@ import { getNavigationItems } from './utils/navigationItems';
 
 export const App: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
-  const { tasks, addTask, updateTask, deleteTask, clearAllTasks } = useTasks();
+  const { tasks, addTask, updateTask, deleteTask, clearAllTasks, restoreTasks } = useTasks();
+  const {
+    savedReports,
+    saveReportQuick,
+    saveReportCustom,
+    deleteReport,
+    renameReport,
+    clearAllReports,
+  } = useSavedReports();
   const {
     formData,
     editingTaskId,
@@ -51,8 +61,36 @@ export const App: React.FC = () => {
     }
   }, [isSidebarCollapsed]);
 
-  const navItems = getNavigationItems(tasks.length);
+  const navItems = getNavigationItems(tasks.length, savedReports.length);
   const activeItem = navItems.find((item) => item.id === activeToolId) || navItems[0];
+
+  const handleSaveReportQuick = () => {
+    if (tasks.length === 0) {
+      notify('Adicione pelo menos uma tarefa para salvar o relatório.', 'error');
+      return;
+    }
+    saveReportQuick(tasks);
+    notify('Relatório salvo com sucesso no Histórico!', 'success');
+  };
+
+  const handleSaveReportCustom = (params: {
+    title: string;
+    date: string;
+    time: string;
+    note?: string;
+  }) => {
+    if (tasks.length === 0) {
+      notify('Adicione pelo menos uma tarefa para salvar o relatório.', 'error');
+      return;
+    }
+    saveReportCustom({ tasks, ...params });
+    notify('Relatório personalizado salvo no Histórico!', 'success');
+  };
+
+  const handleRestoreTasksFromHistory = (restoredTasks: Task[]) => {
+    restoreTasks(restoredTasks);
+    resetForm();
+  };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -147,6 +185,8 @@ export const App: React.FC = () => {
                   onEditTask={handleEditTask}
                   onDeleteTask={handleDeleteTask}
                   onRequestClearAll={handleOpenClearModal}
+                  onSaveReportQuick={handleSaveReportQuick}
+                  onSaveReportCustom={handleSaveReportCustom}
                   onNotify={notify}
                 />
               </div>
@@ -156,6 +196,18 @@ export const App: React.FC = () => {
               <QuickTemplatesHub
                 notification={notification}
                 onNotify={notify}
+              />
+            </main>
+          ) : activeToolId === 'historico' ? (
+            <main className="container" style={{ maxWidth: '1200px' }}>
+              <ReportsHistoryHub
+                savedReports={savedReports}
+                onDeleteReport={deleteReport}
+                onRenameReport={renameReport}
+                onClearAllReports={clearAllReports}
+                onRestoreTasks={handleRestoreTasksFromHistory}
+                onNotify={notify}
+                onNavigateToGenerator={() => setActiveToolId('relatorios')}
               />
             </main>
           ) : (
