@@ -100,8 +100,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
             {!isCollapsed && (
               <div className="sidebar-brand-text">
-                <span className="brand-title">AutoHub</span>
-                <span className="brand-subtitle">Central de Produtividade</span>
+                <span className="brand-title">BenHermes</span>
+                <span className="brand-subtitle">Hub de Automações & Produtividade</span>
               </div>
             )}
           </div>

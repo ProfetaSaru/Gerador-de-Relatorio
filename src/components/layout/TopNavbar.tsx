@@ -28,7 +28,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
         <div className="top-navbar-breadcrumbs">
           <span className="crumb-hub">
             <Layers size={14} />
-            Hub
+            BenHermes
           </span>
           <span className="crumb-separator">/</span>
           <span className="crumb-current">{activeItem.name}</span>
