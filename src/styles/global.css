@@ -6,15 +6,16 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--ink);
-  font-family: Georgia, 'Times New Roman', serif;
-  background: #eef3f6;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-page);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button,
 input,
 textarea {
-  font: inherit;
+  font-family: inherit;
 }
 
 button {
@@ -25,28 +26,57 @@ button {
   display: none !important;
 }
 
-.container {
-  width: min(1180px, calc(100% - 40px));
+/* Dashboard Shell */
+.dashboard-root {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: var(--bg-page);
+  overflow: hidden;
+}
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: margin-left var(--transition-normal);
+}
+
+.dashboard-content-area {
+  flex: 1;
+  padding: 24px 32px 64px;
+  width: 100%;
+  max-width: 1380px;
   margin: 0 auto;
-  padding: 58px 0 72px;
+}
+
+/* Content Container */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 0 32px;
 }
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(290px, 0.78fr) minmax(0, 1.5fr);
-  gap: 24px;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1.45fr);
+  gap: 28px;
   align-items: start;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   .layout {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 560px) {
-  .container {
-    width: min(100% - 24px, 520px);
-    padding: 30px 0 44px;
+@media (max-width: 768px) {
+  .dashboard-content-area {
+    padding: 16px 16px 48px;
   }
 }

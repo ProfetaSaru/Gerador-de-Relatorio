@@ -1,13 +1,55 @@
 :root {
-  --ink: #182230;
-  --muted: #687586;
-  --line: #dce3ea;
+  /* Colors */
+  --ink: #0f172a;
+  --ink-secondary: #334155;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
   --paper: #ffffff;
-  --blue: #1769aa;
-  --blue-dark: #0f4f80;
-  --blue-soft: #eaf4fc;
-  --red: #b53b3b;
-  --red-soft: #fff1f1;
-  --green: #28734d;
-  --shadow: 0 18px 50px rgba(40, 61, 80, 0.1);
+  --bg-page: #f8fafc;
+
+  /* Brand Blues */
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --blue-soft: #eff6ff;
+  --blue-hover: #3b82f6;
+
+  /* States */
+  --red: #ef4444;
+  --red-soft: #fef2f2;
+  --green: #10b981;
+  --green-soft: #ecfdf5;
+  --amber: #f59e0b;
+  --amber-soft: #fffbeb;
+
+  /* Sidebar Theme (Modern Dark Slate) */
+  --sidebar-bg: #090e17;
+  --sidebar-surface: #111827;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-text: #94a3b8;
+  --sidebar-text-hover: #f1f5f9;
+  --sidebar-active-bg: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --sidebar-active-text: #ffffff;
+  --sidebar-width: 270px;
+  --sidebar-collapsed-width: 76px;
+
+  /* Top Navbar */
+  --topbar-height: 64px;
+  --topbar-bg: rgba(255, 255, 255, 0.85);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.06), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 20px 45px -10px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 25px rgba(37, 99, 235, 0.35);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
